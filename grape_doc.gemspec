@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = GrapeDoc::VERSION
 
   gem.add_dependency 'grape', '0.2.1'
+  gem.add_dependency 'RedCloth'
 
   gem.add_development_dependency 'rspec'
 end

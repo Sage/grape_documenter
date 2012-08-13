@@ -1,5 +1,6 @@
 require "grape_doc/version"
 
 module GrapeDoc
-  # Your code goes here...
+  require 'grape_doc/generator'
+  require 'grape_doc/railtie' if defined?(Rails)
 end
