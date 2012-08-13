@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "grape_doc"
   gem.require_paths = ["lib"]
   gem.version       = GrapeDoc::VERSION
+
+  gem.add_dependency 'grape', '0.2.1'
+
+  gem.add_development_dependency 'rspec'
 end
