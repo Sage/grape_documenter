@@ -4,13 +4,12 @@ module GrapeDoc
   module Formatters
     # For ease this uses the textile formatter first then post processes to html
     class Html
-      def initialize(structure, generator)
+      def initialize(structure)
         @structure = structure
-        @generator = generator
       end
 
       def format
-        textile = Textile.new(@structure, @generator)
+        textile = Textile.new(@structure)
         RedCloth.new(textile.format).to_html
       end
     end

@@ -1,9 +1,10 @@
+require 'active_support/core_ext/object/blank'
+
 module GrapeDoc
   module Formatters
     class Textile
-      def initialize(structure, generator)
+      def initialize(structure)
         @structure = structure
-        @generator = generator
       end
 
       def format

@@ -44,11 +44,11 @@ module GrapeDoc
     private
 
     def generate_textile(doc)
-      Formatters::Textile.new(doc, self).format
+      Formatters::Textile.new(doc).format
     end
 
     def generate_html(doc)
-      Formatters::Html.new(doc, self).format
+      Formatters::Html.new(doc).format
     end
 
     def resources_for_version(version)
