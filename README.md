@@ -1,6 +1,6 @@
 # GrapeDoc
 
-TODO: Write a gem description
+This adds a rake tasks to Rails Applications to generate documentation for Grape APIs.
 
 ## Installation
 
@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Within the root of you Rails Application run the following rake task...
+
+   $ bundle exec rake generate_grape_docs['MyApplication::API','/path/to/where/you/want/your/docs']
+
+NOTE: The lack of space between the arguments. Rake doesn't like the space unless you wrap the whole thing as a string.
+
+The first argument is the a string of the class of Grape::API. If you have multiple APIs within the same application you can run the rake task as many times as you like with different output paths.
 
 ## Contributing
 
