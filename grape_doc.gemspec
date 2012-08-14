@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'grape', '0.2.1'
   gem.add_dependency 'RedCloth'
-  gem.add_dependency 'active_support'
+  gem.add_dependency 'activesupport'
 
   gem.add_development_dependency 'rspec'
 end
