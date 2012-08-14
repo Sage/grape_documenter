@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'RedCloth'
+require 'active_support/inflector'
 
 module GrapeDoc
   class Generator
