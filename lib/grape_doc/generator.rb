@@ -29,13 +29,13 @@ module GrapeDoc
       docs
     end
 
-    def output
+    def output(format = 'html')
       files = {}
       generate_namespace_docs.each do |doc|
         puts doc.title
 
-        filename = File.join(@output_path, doc.version, "#{doc.root_path}.textile")
-        files[filename] = generate_textile(doc)
+        filename = File.join(@output_path, doc.version, "#{doc.root_path}.#{format}")
+        files[filename] = self.send("generate_#{format}", doc)
       end
 
       Writer.new(files).write_to_files!
@@ -45,6 +45,10 @@ module GrapeDoc
 
     def generate_textile(doc)
       Formatters::Textile.new(doc, self).format
+    end
+
+    def generate_html(doc)
+      Formatters::Html.new(doc, self).format
     end
 
     def resources_for_version(version)
