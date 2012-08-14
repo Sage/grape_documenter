@@ -3,12 +3,13 @@ require 'active_support/inflector'
 
 module GrapeDoc
   class Generator
-    def initialize(api_class, output_path)
+    def initialize(api_class, output_path, options = {})
       raise 'api_class must be specified' if api_class.nil?
       raise 'output_path must be specified' if output_path.nil?
 
       @output_path = output_path
       @api_class = api_class.constantize
+      @format = options[:format] || 'html'
     end
 
     def generate_namespace_docs
@@ -27,13 +28,13 @@ module GrapeDoc
       docs
     end
 
-    def output(format = 'html')
+    def output
       files = {}
       generate_namespace_docs.each do |doc|
         puts doc.title
 
-        filename = File.join(@output_path, doc.version, "#{doc.root_path}.#{format}")
-        files[filename] = self.send("generate_#{format}", doc)
+        filename = File.join(@output_path, doc.version, "#{doc.root_path}.#{@format}")
+        files[filename] = self.send("generate_#{@format}", doc)
       end
 
       Writer.new(files).write_to_files!

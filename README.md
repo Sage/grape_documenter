@@ -26,6 +26,12 @@ NOTE: The lack of space between the arguments. Rake doesn't like the space unles
 
 The first argument is the a string of the class of Grape::API. If you have multiple APIs within the same application you can run the rake task as many times as you like with different output paths.
 
+### Specifying output format
+
+Currently 2 formats are supported: 'html'; 'textile'. The default is html. You can change the format as shown below...
+
+   $ bundle exec rake generate_grape_docs['MyApplication::API','/path/to/where/you/want/your/docs','textile']
+
 ## Contributing
 
 1. Fork it
