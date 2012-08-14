@@ -11,62 +11,40 @@ module GrapeDoc
       @api_class = api_class.constantize
     end
 
-    def output
+    def generate_namespace_docs
+      docs = []
+
       @api_class.versions.each do |version|
-        puts "Generating Version: #{version}..."
-
-        ensure_version_path_present(version)
-
         namespaces_for_version(version).each do |namespace|
-          puts "Namespace: #{namespace}..."
-          FileUtils.mkdir_p(File.join(@output_path, version, *namespace.split('/')[1..-2]))
-
-          filename = File.join(@output_path, version, "#{namespace}.textile")
-
-          File.open(filename, 'w') do |f|
-            f.write(namespace_links_for_version(version, namespace))
-
-            f.write("\n\n")
-            f.write "h1. #{titleize(namespace)}"
-
-            routes_for_version_and_namespace(version, namespace).each do |route|
-              f.write("\n\n")
-              f.write "h2. #{route.route_method}: #{route.route_path.gsub(':version', version)}"
-              f.write("\n\n")
-
-              if route.route_description.present?
-                f.write("h3. Description")
-                f.write("\n\n")
-                f.write route.route_description
-                f.write("\n\n")
-              end
-
-              if route.route_params.present?
-                f.write("h3. Parameters")
-                f.write("\n\n")
-                f.write(tabulate_params route.route_params)
-                f.write("\n\n")
-              end
-            end
-          end
+          doc = NamespaceDoc.new
+          doc.title = titleize(namespace)
+          doc.root_path = namespace
+          doc.routes = routes_for_version_and_namespace(version, namespace)
+          doc.version = version
+          docs << doc
         end
       end
+
+      docs
     end
 
-    def textile_to_html
-      puts 'Converting textile to html...'
+    def output
+      files = {}
+      generate_namespace_docs.each do |doc|
+        puts doc.title
 
-      textiles = Dir.glob(@output_path + '/**/*.textile')
-
-      textiles.each do |textile|
-        File.open(textile.gsub('.textile', '.html'), 'w') do |f|
-          f.write RedCloth.new(IO.read(textile)).to_html
-        end
+        filename = File.join(@output_path, doc.version, "#{doc.root_path}.textile")
+        files[filename] = generate_textile(doc)
       end
+
+      Writer.new(files).write_to_files!
     end
 
-    private
+    def generate_textile(doc)
+      Formatters::Textile.new(doc, self).format
+    end
 
+    #TODO: Refactor this into the Textile formatter class.
     def namespace_links_for_version(version, namespace)
       slashes = '../' * (namespace.count('/')-1)
       resources_string = ""
@@ -76,10 +54,7 @@ module GrapeDoc
       resources_string
     end
 
-    def ensure_version_path_present(version)
-      version_dir = File.join(@output_path, version)
-      FileUtils.mkdir_p(version_dir)
-    end
+    private
 
     def namespaces_for_version(version)
       return instance_variable_get("@#{version}_namespaces") if instance_variable_get("@#{version}_namespaces")
@@ -107,17 +82,6 @@ module GrapeDoc
 
     def titleize(string)
       string.split('/').last.titleize
-    end
-
-    def tabulate_params(params)
-      string = "|_.Name|_.Type|_.Description|\n"
-
-      params.each do |k,v|
-        v = {:desc => v} unless v.is_a?(Hash)
-        string << "|#{k}|#{v[:type]}|#{v[:desc]}|\n"
-      end
-
-      string
     end
   end
 end
