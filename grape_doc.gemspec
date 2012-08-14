@@ -2,10 +2,10 @@
 require File.expand_path('../lib/grape_doc/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Phil Lee"]
+  gem.authors       = ["Phil Lee", "Steven Anderson"]
   gem.email         = ["philip.lee@sage.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = "This adds a rake tasks to Rails Applications to generate documentation for Grape APIs."
+  gem.summary       = "This adds a rake tasks to Rails Applications to generate documentation for Grape APIs."
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
