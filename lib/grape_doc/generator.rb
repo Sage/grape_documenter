@@ -20,6 +20,7 @@ module GrapeDoc
           doc.title = titleize(namespace)
           doc.root_path = namespace
           doc.routes = routes_for_version_and_namespace(version, namespace)
+          doc.resources = resources_for_version(version)
           doc.version = version
           docs << doc
         end
@@ -40,21 +41,19 @@ module GrapeDoc
       Writer.new(files).write_to_files!
     end
 
+    private
+
     def generate_textile(doc)
       Formatters::Textile.new(doc, self).format
     end
 
-    #TODO: Refactor this into the Textile formatter class.
-    def namespace_links_for_version(version, namespace)
-      slashes = '../' * (namespace.count('/')-1)
-      resources_string = ""
+    def resources_for_version(version)
+      resources = []
       namespaces_for_version(version).each do |resource|
-        resources_string << "* \"#{titleize(resource)}\":#{slashes}#{resource.sub('/', '')}.html\n"
+        resources << { :name => titleize(resource), :path => resource }
       end
-      resources_string
+      resources
     end
-
-    private
 
     def namespaces_for_version(version)
       return instance_variable_get("@#{version}_namespaces") if instance_variable_get("@#{version}_namespaces")

@@ -11,7 +11,7 @@ module GrapeDoc
 
         output = "h1. #{doc.title}"
         output << "\n\n"
-        output << @generator.namespace_links_for_version(doc.version, doc.root_path)
+        output << resource_navigation
         output << "\n\n"
 
         doc.routes.each do |route|
@@ -38,6 +38,17 @@ module GrapeDoc
       end
 
       private
+
+      def resource_navigation
+        depth = (@structure.root_path.count('/')-1)
+        navigation = ''
+
+        @structure.resources.each do |resource|
+          navigation << "* \"#{resource[:name]}\":#{'../' * depth}#{resource[:path].sub('/', '')}.html\n"
+        end
+
+        navigation
+      end
 
       def tabulate_params(params)
         string = "|_.Name|_.Type|_.Description|\n"
