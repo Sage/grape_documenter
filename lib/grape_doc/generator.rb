@@ -18,11 +18,11 @@ module GrapeDoc
       @api_class.versions.each do |version|
         namespaces_for_version(version).each do |namespace|
           doc = NamespaceDoc.new
+          doc.version = version
           doc.title = titleize(namespace)
           doc.root_path = namespace
           doc.routes = routes_for_version_and_namespace(version, namespace)
           doc.resources = resources_for_version(version)
-          doc.version = version
           docs << doc
         end
       end
