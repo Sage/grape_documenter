@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'grape_doc'
+generator = GrapeDoc::Generator.new(ARGV[0], ARGV[1], :format => ARGV[2])
+generator.output
