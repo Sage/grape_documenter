@@ -1,6 +1,6 @@
 require 'active_support/core_ext/object/blank'
 
-module GrapeDoc
+module GrapeDocumenter
   module Formatters
     class Textile
       def initialize(structure)

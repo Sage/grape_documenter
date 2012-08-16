@@ -1,4 +1,4 @@
-module GrapeDoc
+module GrapeDocumenter
   class RouteDoc
     def initialize(route)
       @route = route

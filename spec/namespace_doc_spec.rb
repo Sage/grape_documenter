@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GrapeDoc::NamespaceDoc do
+describe GrapeDocumenter::NamespaceDoc do
   describe 'attrubutes' do
     subject do
       described_class.new :title => 'some title',

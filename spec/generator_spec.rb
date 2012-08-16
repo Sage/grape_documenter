@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe GrapeDoc::Generator do
-  subject { described_class.new 'MyApplication::API', '/tmp/grape_doc' }
+describe GrapeDocumenter::Generator do
+  subject { described_class.new 'MyApplication::API', '/tmp/grape_documenter' }
 
   context 'integration test' do
     context 'for the first api version' do

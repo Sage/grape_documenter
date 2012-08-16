@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GrapeDoc::RouteDoc do
+describe GrapeDocumenter::RouteDoc do
   let(:mock_route) do
     mock('route', :route_method => 'GET',
                   :route_path => '/users',

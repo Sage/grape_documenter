@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GrapeDoc::Formatters::Textile do
+describe GrapeDocumenter::Formatters::Textile do
   let(:mock_route) do
     mock('route', :route_method => 'GET',
                   :route_path => '/users',
@@ -10,10 +10,10 @@ describe GrapeDoc::Formatters::Textile do
   end
 
   let(:structure) do
-    GrapeDoc::NamespaceDoc.new :version => 'v1',
+    GrapeDocumenter::NamespaceDoc.new :version => 'v1',
         :title => 'Users',
         :root_path => '/users',
-        :routes => [GrapeDoc::RouteDoc.new(mock_route)],
+        :routes => [GrapeDocumenter::RouteDoc.new(mock_route)],
         :resources => [{ :name => 'Contacts', :path => '/contacts' }]
   end
 
