@@ -1,4 +1,4 @@
-# GrapeDoc
+# GrapeDocumenter
 
 This adds a task to Rails Applications to generate documentation for Grape APIs.
 
@@ -6,7 +6,7 @@ This adds a task to Rails Applications to generate documentation for Grape APIs.
 
 Add this line to your application's Gemfile:
 
-    gem 'grape_doc'
+    gem 'grape_documenter'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install grape_doc
+    $ gem install grape_documenter
 
 ## Usage
 
