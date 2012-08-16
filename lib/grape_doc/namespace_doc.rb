@@ -1,6 +1,6 @@
 module GrapeDoc
   class NamespaceDoc
-    attr_accessor :title, :routes, :root_path, :version, :resources
+    attr_reader :title, :routes, :root_path, :version, :resources
 
     def initialize(options = {})
       @title = options[:title]
