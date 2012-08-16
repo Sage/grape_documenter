@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'grape_doc'
+
+begin
+  require File.expand_path(Dir.pwd + "/config/environment")
+rescue LoadError => ex
+  puts "#{ex}"
+end
+
+generator = GrapeDoc::Generator.new(ARGV[0], ARGV[1], :format => ARGV[2])
+generator.output
