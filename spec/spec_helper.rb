@@ -1,2 +1,2 @@
-require 'grape_doc'
+require 'grape_documenter'
 require 'support/test_api'

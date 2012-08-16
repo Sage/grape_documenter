@@ -1,3 +1,3 @@
-module GrapeDoc
+module GrapeDocumenter
   VERSION = "0.0.3"
 end
