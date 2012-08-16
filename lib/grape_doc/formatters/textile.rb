@@ -33,6 +33,13 @@ module GrapeDoc
             output << tabulate_params(route.params)
             output << "\n\n"
           end
+
+          if route.optional_params.present?
+            output << "h3. Optional Parameters"
+            output << "\n\n"
+            output << tabulate_params(route.optional_params)
+            output << "\n\n"
+          end
         end
 
         output
