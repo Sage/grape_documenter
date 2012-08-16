@@ -79,7 +79,7 @@ module GrapeDoc
     end
 
     def routes_for_version_and_namespace(version, namespace)
-      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }
+      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }.map{|r| RouteDoc.new(r)}
     end
 
     def titleize(string)

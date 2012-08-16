@@ -17,20 +17,20 @@ module GrapeDoc
 
         doc.routes.each do |route|
           output << "\n\n"
-          output << "h2. #{route.route_method}: #{route.route_path.gsub(':version', doc.version)}"
+          output << "h2. #{route.http_method}: #{route.path.gsub(':version', doc.version)}"
           output << "\n\n"
 
-          if route.route_description.present?
+          if route.description.present?
             output << "h3. Description"
             output << "\n\n"
-            output << route.route_description
+            output << route.description
             output << "\n\n"
           end
 
-          if route.route_params.present?
+          if route.params.present?
             output << "h3. Parameters"
             output << "\n\n"
-            output << tabulate_params(route.route_params)
+            output << tabulate_params(route.params)
             output << "\n\n"
           end
         end

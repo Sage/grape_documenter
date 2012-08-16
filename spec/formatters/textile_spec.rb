@@ -12,7 +12,7 @@ describe GrapeDoc::Formatters::Textile do
     GrapeDoc::NamespaceDoc.new :version => 'v1',
         :title => 'Users',
         :root_path => '/users',
-        :routes => [mock_route],
+        :routes => [GrapeDoc::RouteDoc.new(mock_route)],
         :resources => [{ :name => 'Contacts', :path => '/contacts' }]
   end
 
