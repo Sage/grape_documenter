@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'active_support/inflector'
 
-module GrapeDoc
+module GrapeDocumenter
   class Generator
     def initialize(api_class, output_path, options = {})
       raise 'api_class must be specified' if api_class.nil?
@@ -79,7 +79,7 @@ module GrapeDoc
     end
 
     def routes_for_version_and_namespace(version, namespace)
-      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }
+      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }.map{|r| RouteDoc.new(r)}
     end
 
     def titleize(string)

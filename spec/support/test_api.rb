@@ -13,6 +13,14 @@ module MyApplication
         }
         get ':id' do
         end
+
+        post '/', {
+          :params => {
+            'username' => { :desc => 'The username of the user', :type => 'string' }
+          }, :optional_params => {
+            'first_name' => { :desc => 'First name of the user', :type => 'string' }
+          }
+        }
       end
     end
 

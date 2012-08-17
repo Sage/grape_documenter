@@ -1,18 +1,19 @@
 require 'spec_helper'
 
-describe GrapeDoc::Formatters::Textile do
+describe GrapeDocumenter::Formatters::Textile do
   let(:mock_route) do
     mock('route', :route_method => 'GET',
                   :route_path => '/users',
                   :route_description => 'users description goes here',
-                  :route_params => {:id => {:type => 'integer', :desc => 'user id'}})
+                  :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                  :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
   end
 
   let(:structure) do
-    GrapeDoc::NamespaceDoc.new :version => 'v1',
+    GrapeDocumenter::NamespaceDoc.new :version => 'v1',
         :title => 'Users',
         :root_path => '/users',
-        :routes => [mock_route],
+        :routes => [GrapeDocumenter::RouteDoc.new(mock_route)],
         :resources => [{ :name => 'Contacts', :path => '/contacts' }]
   end
 
@@ -31,9 +32,15 @@ describe GrapeDoc::Formatters::Textile do
     subject.format.should include('users description goes here')
   end
 
-  it 'has an h3 and the route_params in a table' do
+  it 'has an h3 and the params in a table' do
     subject.format.should include('h3. Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
     subject.format.should include('|id|integer|user id|')
+  end
+
+  it 'has an h3 and the optional_params in a table' do
+    subject.format.should include('h3. Optional Parameters')
+    subject.format.should include('|_.Name|_.Type|_.Description|')
+    subject.format.should include('|foo|string|fooness|')
   end
 end
