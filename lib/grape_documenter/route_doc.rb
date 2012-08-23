@@ -1,7 +1,8 @@
 module GrapeDocumenter
   class RouteDoc
-    def initialize(route)
+    def initialize(route, options = {})
       @route = route
+      @mounted_path = options[:mounted_path] || ''
     end
 
     def http_method
@@ -9,7 +10,7 @@ module GrapeDocumenter
     end
 
     def path
-      @route.route_path
+      @mounted_path + @route.route_path.gsub('(.:format)', '')
     end
 
     def description
