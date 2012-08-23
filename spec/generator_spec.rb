@@ -21,9 +21,21 @@ describe GrapeDocumenter::Generator do
         let(:routes) { subject.generate_namespace_docs.first.routes }
 
         describe 'index' do
+          describe 'method' do
+            it 'returns get' do
+              routes.first.http_method.should == 'GET'
+            end
+          end
+
           describe 'description' do
             it 'returns Get all users' do
               routes.first.description.should == 'Get all users'
+            end
+          end
+
+          describe 'path' do
+            it 'returns /users' do
+              routes.first.path.should == '/:version/user'
             end
           end
         end
@@ -47,6 +59,16 @@ describe GrapeDocumenter::Generator do
 
       it 'stores the global resources' do
         subject.generate_namespace_docs.first.resources.should == [{ :name => 'User', :path => '/user' }]
+      end
+    end
+  end
+
+  describe 'options' do
+    describe 'prefix' do
+      subject { described_class.new 'MyApplication::API', '/tmp/grape_documenter', :mounted_path => '/mounted_path' }
+
+      it 'sets the prefix' do
+        subject.mounted_path.should == '/mounted_path'
       end
     end
   end

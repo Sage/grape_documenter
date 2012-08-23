@@ -33,4 +33,12 @@ describe GrapeDocumenter::RouteDoc do
       subject.optional_params.should == {'foo' => {:type => 'string', :desc => 'fooness'}}
     end
   end
+
+  context 'with mounted_path' do
+    subject { described_class.new(mock_route, :mounted_path => '/foo')  }
+
+    it 'returns the path with mounted path' do
+      subject.path.should == '/foo/users'
+    end
+  end
 end
