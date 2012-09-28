@@ -5,7 +5,10 @@ describe GrapeDocumenter::Formatters::Textile do
     mock('route', :route_method => 'GET',
                   :route_path => '/users',
                   :route_description => 'users description goes here',
-                  :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                  :route_params => {
+                    'id' => {:type => 'integer', :desc => 'user id'},
+                    'parameter[with][sub][elements]' => {:type => 'thing', :desc => 'stuff'}
+                  },
                   :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
   end
 
@@ -35,12 +38,12 @@ describe GrapeDocumenter::Formatters::Textile do
   it 'has an h3 and the params in a table' do
     subject.format.should include('h3. Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
-    subject.format.should include('|id|integer|user id|')
+    subject.format.should include("|\\3. id|\n||integer|user id|")
   end
 
   it 'has an h3 and the optional_params in a table' do
     subject.format.should include('h3. Optional Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
-    subject.format.should include('|foo|string|fooness|')
+    subject.format.should include("|\\3. foo|\n||string|fooness|")
   end
 end

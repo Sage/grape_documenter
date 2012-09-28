@@ -12,7 +12,6 @@ module GrapeDocumenter
 
         output = "h1. #{doc.title}"
         output << "\n\n"
-        output << resource_navigation
         output << "\n\n"
 
         doc.routes.each do |route|
@@ -45,25 +44,12 @@ module GrapeDocumenter
         output
       end
 
-      private
-
-      def resource_navigation
-        depth = (@structure.root_path.count('/')-1)
-        navigation = ''
-
-        @structure.resources.each do |resource|
-          navigation << "* \"#{resource[:name]}\":#{'../' * depth}#{resource[:path].sub('/', '')}.html\n"
-        end
-
-        navigation
-      end
-
       def tabulate_params(params)
         string = "|_.Name|_.Type|_.Description|\n"
 
         params.each do |k,v|
           v = {:desc => v} unless v.is_a?(Hash)
-          string << "|#{k}|#{v[:type]}|#{v[:desc]}|\n"
+          string << "|\\3. #{k}|\n||#{v[:type]}|#{v[:desc]}|\n"
         end
 
         string
