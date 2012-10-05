@@ -27,7 +27,7 @@ module GrapeDocumenter
           end
 
           if route.params.present?
-            output << "h3. Parameters"
+            output << "h3. Required Parameters"
             output << "\n\n"
             output << tabulate_params(route.params)
             output << "\n\n"

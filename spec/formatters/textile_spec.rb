@@ -36,7 +36,7 @@ describe GrapeDocumenter::Formatters::Textile do
   end
 
   it 'has an h3 and the params in a table' do
-    subject.format.should include('h3. Parameters')
+    subject.format.should include('h3. Required Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
     subject.format.should include("|\\3. id|\n||integer|user id|")
   end
