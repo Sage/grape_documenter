@@ -1,5 +1,8 @@
+require 'active_support/inflector'
+
 module GrapeDocumenter
   class RouteDoc
+    include  ActiveSupport::Inflector
     def initialize(route, options = {})
       @route = route
       @mounted_path = options[:mounted_path] || ''
@@ -50,9 +53,9 @@ module GrapeDocumenter
       resource = items.reject{|i| i.blank? }.reject{|j| j.start_with?(':') }.last
 
       if inferred_singular?
-        indefinite_articlerize resource.singularize
+        indefinite_articlerize(humanize(resource.singularize))
       else
-        "a list of #{resource.pluralize}"
+        "a list of #{humanize(resource.pluralize)}"
       end
     end
 

@@ -54,13 +54,13 @@ describe GrapeDocumenter::RouteDoc do
 
       subject { described_class.new mock_route  }
 
-      it 'is To get a list of all users' do
-        subject.inferred_title.should == 'To get a list of users'
+      it 'is To get a list of all Users' do
+        subject.inferred_title.should == 'To get a list of Users'
       end
 
       context 'when nested' do
-        it 'is To get a list of all users' do
-          subject.inferred_title.should == 'To get a list of users'
+        it 'is To get a list of all Users' do
+          subject.inferred_title.should == 'To get a list of Users'
         end
       end
     end
@@ -76,8 +76,8 @@ describe GrapeDocumenter::RouteDoc do
 
       subject { described_class.new mock_route  }
 
-      it 'is To get a user' do
-        subject.inferred_title.should == 'To get a user'
+      it 'is To get a User' do
+        subject.inferred_title.should == 'To get a User'
       end
 
       context 'when nested' do
@@ -91,8 +91,8 @@ describe GrapeDocumenter::RouteDoc do
 
         subject { described_class.new mock_route  }
 
-        it 'is To get a user' do
-          subject.inferred_title.should == 'To get a user'
+        it 'is To get a User' do
+          subject.inferred_title.should == 'To get a User'
         end
       end
 
@@ -107,8 +107,24 @@ describe GrapeDocumenter::RouteDoc do
 
         subject { described_class.new mock_route  }
 
-        it 'is To get a user' do
-          subject.inferred_title.should == 'To get an account'
+        it 'is To get a User' do
+          subject.inferred_title.should == 'To get an Account'
+        end
+      end
+
+      context 'when resource contains an underscore' do
+        let(:mock_route) do
+          mock('route', :route_method => 'GET',
+                        :route_path => '/some_resource/:their_id/user_type/:id',
+                        :route_description => 'users description goes here',
+                        :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                        :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
+        end
+
+        subject { described_class.new mock_route  }
+
+        it 'is To get a User' do
+          subject.inferred_title.should == 'To get a User type'
         end
       end
     end
@@ -124,8 +140,8 @@ describe GrapeDocumenter::RouteDoc do
 
       subject { described_class.new mock_route  }
 
-      it 'is To create a user' do
-        subject.inferred_title.should == 'To create a user'
+      it 'is To create a User' do
+        subject.inferred_title.should == 'To create a User'
       end
     end
 
@@ -140,8 +156,8 @@ describe GrapeDocumenter::RouteDoc do
 
       subject { described_class.new mock_route  }
 
-      it 'is To get a user' do
-        subject.inferred_title.should == 'To update a user'
+      it 'is To get a User' do
+        subject.inferred_title.should == 'To update a User'
       end
     end
 
@@ -156,8 +172,8 @@ describe GrapeDocumenter::RouteDoc do
 
       subject { described_class.new mock_route  }
 
-      it 'is To delete a user' do
-        subject.inferred_title.should == 'To delete a user'
+      it 'is To delete a User' do
+        subject.inferred_title.should == 'To delete a User'
       end
     end
   end

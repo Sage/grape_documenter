@@ -26,22 +26,22 @@ describe GrapeDocumenter::Formatters::Textile do
     subject.format.should include('h1. Users')
   end
 
-  it 'has an h2 with method and path' do
-    subject.format.should include('h2. GET: /users')
+  it 'has an h3 with method and path' do
+    subject.format.should include('h3. GET: /users')
   end
 
-  it 'has an h3 and the description' do
+  it 'has the description' do
     subject.format.should include('users description goes here')
   end
 
-  it 'has an h3 and the params in a table' do
-    subject.format.should include('h3. Required Parameters')
+  it 'has an h4 and the params in a table' do
+    subject.format.should include('h4. Required Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
     subject.format.should include("|\\3. id|\n||integer|user id|")
   end
 
-  it 'has an h3 and the optional_params in a table' do
-    subject.format.should include('h3. Optional Parameters')
+  it 'has an h4 and the optional_params in a table' do
+    subject.format.should include('h4. Optional Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
     subject.format.should include("|\\3. foo|\n||string|fooness|")
   end
