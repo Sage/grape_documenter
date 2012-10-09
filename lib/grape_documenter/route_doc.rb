@@ -24,5 +24,38 @@ module GrapeDocumenter
     def optional_params
       @route.route_optional_params
     end
+
+    def inferred_title
+      "To #{inferred_action} a #{inferred_resource}"
+    end
+
+    private
+
+    # get / create / delete /update
+    def inferred_action
+      case http_method
+      when 'GET'
+        'get'
+      when 'PUT'
+        'update'
+      when 'DELETE'
+        'delete'
+      end
+    end
+
+    def inferred_resource
+      items = path.split('/')
+      resource = items.reject{|i| i.blank? }.first
+
+      if inferred_singular?
+        resource.singularize
+      else
+        "list of #{resource.pluralize}"
+      end
+    end
+
+    def inferred_singular?
+      path.include?(':id')
+    end
   end
 end
