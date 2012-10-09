@@ -10,7 +10,7 @@ module GrapeDocumenter
     end
 
     def path
-      @mounted_path + @route.route_path.gsub('(.:format)', '')
+      @mounted_path + path_without_format
     end
 
     def description
@@ -26,7 +26,7 @@ module GrapeDocumenter
     end
 
     def inferred_title
-      "To #{inferred_action} a #{inferred_resource}"
+      "To #{inferred_action} #{inferred_resource}"
     end
 
     private
@@ -40,22 +40,32 @@ module GrapeDocumenter
         'update'
       when 'DELETE'
         'delete'
+      when 'POST'
+        'create'
       end
     end
 
     def inferred_resource
-      items = path.split('/')
-      resource = items.reject{|i| i.blank? }.first
+      items = path_without_format.split('/')
+      resource = items.reject{|i| i.blank? }.reject{|j| j.start_with?(':') }.last
 
       if inferred_singular?
-        resource.singularize
+        indefinite_articlerize resource.singularize
       else
-        "list of #{resource.pluralize}"
+        "a list of #{resource.pluralize}"
       end
     end
 
     def inferred_singular?
-      path.include?(':id')
+      path.include?(':id') || http_method == 'POST'
+    end
+
+    def path_without_format
+      @route.route_path.gsub('(.:format)', '')
+    end
+
+    def indefinite_articlerize(word)
+      %w(a e i).include?(word[0].downcase) ? "an #{word}" : "a #{word}"
     end
   end
 end

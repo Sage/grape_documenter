@@ -16,7 +16,11 @@ module GrapeDocumenter
 
         doc.routes.each do |route|
           output << "\n\n"
-          output << "h2. #{route.http_method}: #{route.path.gsub(':version', doc.version)}"
+          output << "h2. #{route.inferred_title}"
+          output << "\n\n"
+
+          output << "\n\n"
+          output << "h3. #{route.http_method}: #{route.path.gsub(':version', doc.version)}"
           output << "\n\n"
 
           if route.description.present?
@@ -26,14 +30,14 @@ module GrapeDocumenter
           end
 
           if route.params.present?
-            output << "h3. Required Parameters"
+            output << "h4. Required Parameters"
             output << "\n\n"
             output << tabulate_params(route.params)
             output << "\n\n"
           end
 
           if route.optional_params.present?
-            output << "h3. Optional Parameters"
+            output << "h4. Optional Parameters"
             output << "\n\n"
             output << tabulate_params(route.optional_params)
             output << "\n\n"

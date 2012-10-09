@@ -79,6 +79,54 @@ describe GrapeDocumenter::RouteDoc do
       it 'is To get a user' do
         subject.inferred_title.should == 'To get a user'
       end
+
+      context 'when nested' do
+        let(:mock_route) do
+          mock('route', :route_method => 'GET',
+                        :route_path => '/some_resource/:their_id/users/:id',
+                        :route_description => 'users description goes here',
+                        :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                        :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
+        end
+
+        subject { described_class.new mock_route  }
+
+        it 'is To get a user' do
+          subject.inferred_title.should == 'To get a user'
+        end
+      end
+
+      context 'when resource begins with harsh vowel' do
+        let(:mock_route) do
+          mock('route', :route_method => 'GET',
+                        :route_path => '/some_resource/:their_id/account/:id',
+                        :route_description => 'users description goes here',
+                        :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                        :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
+        end
+
+        subject { described_class.new mock_route  }
+
+        it 'is To get a user' do
+          subject.inferred_title.should == 'To get an account'
+        end
+      end
+    end
+
+    context 'when it is a create action' do
+      let(:mock_route) do
+        mock('route', :route_method => 'POST',
+                      :route_path => '/users',
+                      :route_description => 'users description goes here',
+                      :route_params => {'id' => {:type => 'integer', :desc => 'user id'}},
+                      :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
+      end
+
+      subject { described_class.new mock_route  }
+
+      it 'is To create a user' do
+        subject.inferred_title.should == 'To create a user'
+      end
     end
 
     context 'when it is an update action' do
