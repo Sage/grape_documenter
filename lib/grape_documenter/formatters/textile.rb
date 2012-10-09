@@ -44,7 +44,8 @@ module GrapeDocumenter
       end
 
       def tabulate_params(params)
-        string = "|_.Name|_.Type|_.Description|\n"
+        string = "table(parameters).\n"
+        string += "|_.Name|_.Type|_.Description|\n"
 
         params.each do |k,v|
           v = {:desc => v} unless v.is_a?(Hash)
