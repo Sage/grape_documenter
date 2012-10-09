@@ -31,7 +31,6 @@ describe GrapeDocumenter::Formatters::Textile do
   end
 
   it 'has an h3 and the description' do
-    subject.format.should include('h3. Description')
     subject.format.should include('users description goes here')
   end
 

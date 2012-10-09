@@ -20,7 +20,6 @@ module GrapeDocumenter
           output << "\n\n"
 
           if route.description.present?
-            output << "h3. Description"
             output << "\n\n"
             output << route.description
             output << "\n\n"
