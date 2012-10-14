@@ -32,6 +32,19 @@ module GrapeDocumenter
       "To #{inferred_action} #{inferred_resource}"
     end
 
+    def inferred_rails_action
+      case http_method
+      when 'GET'
+        inferred_singular? ? 'show' : 'index'
+      when 'PUT'
+        'update'
+      when 'POST'
+        'create'
+      when 'DELETE'
+        'destroy'
+      end
+    end
+
     private
 
     # get / create / delete /update

@@ -177,4 +177,57 @@ describe GrapeDocumenter::RouteDoc do
       end
     end
   end
+
+  describe :inferred_rails_action do
+    context 'when index' do
+      before :each do
+        mock_route.stub(:route_method).and_return('GET')
+      end
+
+      it 'returns index' do
+        subject.inferred_rails_action.should == 'index'
+      end
+    end
+
+    context 'when show' do
+      before :each do
+        mock_route.stub(:route_method).and_return('GET')
+        mock_route.stub(:route_path).and_return('/users/:id')
+      end
+
+      it 'returns show' do
+        subject.inferred_rails_action.should == 'show'
+      end
+    end
+
+    context 'when create' do
+      before :each do
+        mock_route.stub(:route_method).and_return('POST')
+      end
+
+      it 'returns create' do
+        subject.inferred_rails_action.should == 'create'
+      end
+    end
+
+    context 'when update' do
+      before :each do
+        mock_route.stub(:route_method).and_return('PUT')
+      end
+
+      it 'returns update' do
+        subject.inferred_rails_action.should == 'update'
+      end
+    end
+
+    context 'when destroy' do
+      before :each do
+        mock_route.stub(:route_method).and_return('DELETE')
+      end
+
+      it 'returns destroy' do
+        subject.inferred_rails_action.should == 'destroy'
+      end
+    end
+  end
 end

@@ -42,6 +42,16 @@ module GrapeDocumenter
             output << tabulate_params(route.optional_params)
             output << "\n\n"
           end
+
+          output << 'h4. Example Request'
+          output << "\n\n"
+          output << "#{doc.root_path}__request__#{route.http_method.downcase}__#{route.inferred_rails_action}"
+          output << "\n\n"
+
+          output << 'h4. Example Response'
+          output << "\n\n"
+          output << "#{doc.root_path}__response__#{route.http_method.downcase}__#{route.inferred_rails_action}"
+          output << "\n\n"
         end
 
         output

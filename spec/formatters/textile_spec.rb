@@ -45,4 +45,14 @@ describe GrapeDocumenter::Formatters::Textile do
     subject.format.should include('|_.Name|_.Type|_.Description|')
     subject.format.should include("|\\3. foo|\n||string|fooness|")
   end
+
+  it 'has placeholder for example requests' do
+    subject.format.should include 'h4. Example Request'
+    subject.format.should include 'users__request__get__index'
+  end
+
+  it 'has placeholder for example responses' do
+    subject.format.should include 'h4. Example Response'
+    subject.format.should include 'users__response__get__index'
+  end
 end
