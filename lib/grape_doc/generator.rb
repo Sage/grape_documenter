@@ -2,6 +2,7 @@ require 'fileutils'
 require 'active_support/inflector'
 
 module GrapeDoc
+  # Generator
   class Generator
     def initialize(api_class, output_path, options = {})
       raise 'api_class must be specified' if api_class.nil?

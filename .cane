@@ -1,0 +1,2 @@
+--abc-exclude GrapeDoc::Formatters::Textile#format
+--style-exclude sagespain_extensions/spec/dummy/config/initializers/secret_token.rb

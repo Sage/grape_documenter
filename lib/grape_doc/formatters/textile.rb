@@ -2,6 +2,7 @@ require 'active_support/core_ext/object/blank'
 
 module GrapeDoc
   module Formatters
+    # Format in Textile
     class Textile
       def initialize(structure)
         @structure = structure

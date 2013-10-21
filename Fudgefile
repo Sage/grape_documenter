@@ -1,0 +1,17 @@
+exclude = '^\.\/(spec|db)\/'
+
+task_group :analysis do
+  yard 'stats --list-undoc --readme README.md', :coverage => 31
+  cane :max_width => 130
+  task :flay, :exclude => exclude, :max => 0
+  task :flog, :exclude => exclude, :methods => true, :average => 8.5, :max => 41.5
+end
+
+task_group :standard do
+  rspec :coverage => 86
+end
+
+build :default do
+  task_group :analysis
+  task_group :standard
+end

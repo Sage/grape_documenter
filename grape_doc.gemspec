@@ -19,5 +19,12 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'RedCloth'
   gem.add_dependency 'activesupport'
 
+  gem.add_development_dependency 'cane'
+  gem.add_development_dependency 'flay'
+  gem.add_development_dependency 'flog'
+  gem.add_development_dependency 'fudge'
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'ruby2ruby'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'yard'
 end
