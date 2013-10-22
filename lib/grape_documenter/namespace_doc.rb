@@ -1,4 +1,5 @@
 module GrapeDocumenter
+  # Namespace
   class NamespaceDoc
     attr_reader :title, :routes, :root_path, :version, :resources
 

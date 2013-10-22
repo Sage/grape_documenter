@@ -2,6 +2,7 @@ require 'fileutils'
 require 'active_support/inflector'
 
 module GrapeDocumenter
+  # Generator
   class Generator
     attr_reader :mounted_path
 

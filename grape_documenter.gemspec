@@ -2,8 +2,8 @@
 require File.expand_path('../lib/grape_documenter/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Phil Lee", "Steven Anderson"]
-  gem.email         = ["philip.lee@sage.com"]
+  gem.authors       = ["Sage"]
+  gem.email         = ["platform@sage.com"]
   gem.description   = "This adds a task to Rails Applications to generate documentation for Grape APIs."
   gem.summary       = "This adds a task to Rails Applications to generate documentation for Grape APIs."
   gem.homepage      = ""
@@ -19,7 +19,14 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'RedCloth'
   gem.add_dependency 'activesupport'
 
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'cane'
+  gem.add_development_dependency 'flay'
+  gem.add_development_dependency 'flog'
+  gem.add_development_dependency 'fudge'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'ruby2ruby'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'yard'
 end

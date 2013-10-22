@@ -26,12 +26,13 @@ The first argument is the a string of the class of Grape::API. If you have multi
 
 ### Specifying output format
 
-Currently 2 formats are supported: 'html'; 'textile'. The default is html. You can change the format as shown below...
+Currently 2 formats are supported: 'html'; 'textile'. The default is html. You can change the format as shown above.
 
 ## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+4. Verify that all tests pass (`bundle exec fudge build`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request

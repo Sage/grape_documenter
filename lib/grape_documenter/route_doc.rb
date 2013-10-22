@@ -1,6 +1,7 @@
 require 'active_support/inflector'
 
 module GrapeDocumenter
+  # Route Doc
   class RouteDoc
     include  ActiveSupport::Inflector
     def initialize(route, options = {})
