@@ -1,4 +1,7 @@
 # GrapeDocumenter
+[![travis-ci](https://secure.travis-ci.org/Sage/grape_documenter.png)](http://travis-ci.org/#!/Sage/grape_documenter)
+[![Dependency Status](https://gemnasium.com/Sage/grape_documenter.png)](https://gemnasium.com/Sage/grape_documenter)
+[![Code Climate](https://codeclimate.com/github/Sage/grape_documenter.png)](https://codeclimate.com/github/Sage/grape_documenter)
 
 This adds a task to Rails Applications to generate documentation for Grape APIs.
 
