@@ -3,7 +3,7 @@
 [![Dependency Status](https://gemnasium.com/Sage/grape_documenter.png)](https://gemnasium.com/Sage/grape_documenter)
 [![Code Climate](https://codeclimate.com/github/Sage/grape_documenter.png)](https://codeclimate.com/github/Sage/grape_documenter)
 
-This adds a task to Rails Applications to generate documentation for Grape APIs.
+This adds a task to Rails Applications to generate documentation for [Grape](https://github.com/intridea/grape) APIs.
 
 ## Installation
 
@@ -23,7 +23,7 @@ Or install it yourself as:
 
 Within the root of you Rails Application run the following rake task...
 
-   $ bundle exec grape_documenter 'MyApp::Api' '/path/to/docs' --format='html' --mounted-path='/api
+    $ bundle exec grape_documenter 'MyApp::Api' '/path/to/docs' --format='html' --mounted-path='/api'
 
 The first argument is the a string of the class of Grape::API. If you have multiple APIs within the same application you can run the task as many times as you like with different output paths.
 
