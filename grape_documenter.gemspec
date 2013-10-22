@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = GrapeDocumenter::VERSION
 
-  gem.add_dependency 'grape', '0.2.1'
+  gem.add_dependency 'grape', '>= 0.2.1'
   gem.add_dependency 'RedCloth'
   gem.add_dependency 'activesupport'
 
@@ -26,6 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'redcarpet'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'ruby2ruby'
   gem.add_development_dependency 'simplecov'
