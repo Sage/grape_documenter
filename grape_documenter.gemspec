@@ -26,6 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'redcarpet'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'ruby2ruby'
   gem.add_development_dependency 'simplecov'
