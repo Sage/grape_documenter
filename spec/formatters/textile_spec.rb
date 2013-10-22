@@ -1,18 +1,22 @@
 require 'spec_helper'
 
-describe GrapeDoc::Formatters::Textile do
+describe GrapeDocumenter::Formatters::Textile do
   let(:mock_route) do
     mock('route', :route_method => 'GET',
                   :route_path => '/users',
                   :route_description => 'users description goes here',
-                  :route_params => {:id => {:type => 'integer', :desc => 'user id'}})
+                  :route_params => {
+                    'id' => {:type => 'integer', :desc => 'user id'},
+                    'parameter[with][sub][elements]' => {:type => 'thing', :desc => 'stuff'}
+                  },
+                  :route_optional_params => {'foo' => {:type => 'string', :desc => 'fooness'}})
   end
 
   let(:structure) do
-    GrapeDoc::NamespaceDoc.new :version => 'v1',
+    GrapeDocumenter::NamespaceDoc.new :version => 'v1',
         :title => 'Users',
         :root_path => '/users',
-        :routes => [mock_route],
+        :routes => [GrapeDocumenter::RouteDoc.new(mock_route)],
         :resources => [{ :name => 'Contacts', :path => '/contacts' }]
   end
 
@@ -22,18 +26,33 @@ describe GrapeDoc::Formatters::Textile do
     subject.format.should include('h1. Users')
   end
 
-  it 'has an h2 with method and path' do
-    subject.format.should include('h2. GET: /users')
+  it 'has an h3 with method and path' do
+    subject.format.should include('h3. GET: /users')
   end
 
-  it 'has an h3 and the description' do
-    subject.format.should include('h3. Description')
+  it 'has the description' do
     subject.format.should include('users description goes here')
   end
 
-  it 'has an h3 and the route_params in a table' do
-    subject.format.should include('h3. Parameters')
+  it 'has an h4 and the params in a table' do
+    subject.format.should include('h4. Required Parameters')
     subject.format.should include('|_.Name|_.Type|_.Description|')
-    subject.format.should include('|id|integer|user id|')
+    subject.format.should include("|\\3. id|\n||integer|user id|")
+  end
+
+  it 'has an h4 and the optional_params in a table' do
+    subject.format.should include('h4. Optional Parameters')
+    subject.format.should include('|_.Name|_.Type|_.Description|')
+    subject.format.should include("|\\3. foo|\n||string|fooness|")
+  end
+
+  it 'has placeholder for example requests' do
+    subject.format.should include 'h4. Example Request'
+    subject.format.should include 'users__request__get__index'
+  end
+
+  it 'has placeholder for example responses' do
+    subject.format.should include 'h4. Example Response'
+    subject.format.should include 'users__response__get__index'
   end
 end

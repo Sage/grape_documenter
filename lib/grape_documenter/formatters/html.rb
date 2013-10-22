@@ -1,6 +1,6 @@
 require 'RedCloth'
 
-module GrapeDoc
+module GrapeDocumenter
   module Formatters
     # For ease this uses the textile formatter first then post processes to html
     class Html

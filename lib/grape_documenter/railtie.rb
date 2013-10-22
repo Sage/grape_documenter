@@ -1,6 +1,6 @@
-require 'grape_doc'
+require 'grape_documenter'
 
-module GrapeDoc
+module GrapeDocumenter
   class Railtie < Rails::Railtie
     rake_tasks do
       load 'tasks/generate.rake'

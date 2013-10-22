@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'grape_documenter'
+require 'optparse'
+
+begin
+  require File.expand_path(Dir.pwd + "/config/environment")
+rescue LoadError => ex
+  puts "#{ex}"
+end
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: bundle exec grape_docuementer 'MyApp::Api' '/path/to/docs' --format='html' --mounted-path='/api'"
+
+  opts.on('--format [OPT]', "Output format. Defaults to html" ) do |f|
+    options[:format] = f
+  end
+
+  opts.on('--mounted-path [OPT]', "Path to where API is mounted. Defaults to /" ) do |path|
+    options[:mounted_path] = path
+  end
+end.parse!
+
+generator = GrapeDocumenter::Generator.new(ARGV[0], ARGV[1], options)
+generator.output

@@ -1,4 +1,4 @@
-module GrapeDoc
+module GrapeDocumenter
   # Writer
   class Writer
     def initialize(doc_structure)
