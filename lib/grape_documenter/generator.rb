@@ -82,8 +82,15 @@ module GrapeDocumenter
       instance_variable_set("@#{version}_routes", @api_class.routes.select { |r| r.route_version == version })
     end
 
+    def endpoint_action(route)
+      route_end_point = @api_class.endpoints.select { |endpoint| endpoint.routes.include? route }
+      route_end_point.first.options[:route_options][:action]
+    end
+
     def routes_for_version_and_namespace(version, namespace)
-      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }.map{|r| RouteDoc.new(r, :mounted_path => @mounted_path)}
+      routes_for_version(version).select { |r| normalize_route_namespace(r) == namespace }.map do |r|
+        RouteDoc.new(r, :mounted_path => @mounted_path, :action => endpoint_action(r))
+      end
     end
 
     def titleize(string)
