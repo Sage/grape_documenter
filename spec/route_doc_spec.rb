@@ -229,5 +229,13 @@ describe GrapeDocumenter::RouteDoc do
         subject.inferred_rails_action.should == 'destroy'
       end
     end
+
+    context 'when custom route' do
+      subject { described_class.new mock_route, :action => 'custom_route' }
+
+      it 'returns custom route' do
+        subject.inferred_rails_action.should == 'custom_route'
+      end
+    end
   end
 end

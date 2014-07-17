@@ -7,6 +7,7 @@ module GrapeDocumenter
     def initialize(route, options = {})
       @route = route
       @mounted_path = options[:mounted_path] || ''
+      @action = options[:action] || ''
     end
 
     def http_method
@@ -29,6 +30,10 @@ module GrapeDocumenter
       @route.route_optional_params
     end
 
+    def action_params
+      @action
+    end
+
     def inferred_title
       "To #{inferred_action} #{inferred_resource}"
     end
@@ -36,7 +41,7 @@ module GrapeDocumenter
     def inferred_rails_action
       case http_method
       when 'GET'
-        inferred_singular? ? 'show' : 'index'
+        inferred_action_from_params
       when 'PUT'
         'update'
       when 'POST'
@@ -75,6 +80,11 @@ module GrapeDocumenter
 
     def inferred_singular?
       path.include?(':id') || http_method == 'POST'
+    end
+
+    def inferred_action_from_params
+      return action_params unless action_params.blank?
+      inferred_singular? ? 'show' : 'index'
     end
 
     def path_without_format

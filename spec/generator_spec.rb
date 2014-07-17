@@ -38,6 +38,19 @@ describe GrapeDocumenter::Generator do
               routes.first.path.should == '/:version/user'
             end
           end
+
+          describe 'path' do
+            it 'returns /users' do
+              routes.first.path.should == '/:version/user'
+            end
+          end
+
+          describe 'action_params' do
+            it 'returns /users' do
+              allow(subject).to receive(:endpoint_action).and_return 'custom_action'
+              routes.first.action_params.should == 'custom_action'
+            end
+          end
         end
 
         describe 'show' do
