@@ -1,7 +1,9 @@
 # GrapeDocumenter
-[![travis-ci](https://secure.travis-ci.org/Sage/grape_documenter.png)](http://travis-ci.org/#!/Sage/grape_documenter)
-[![Dependency Status](https://gemnasium.com/Sage/grape_documenter.png)](https://gemnasium.com/Sage/grape_documenter)
-[![Code Climate](https://codeclimate.com/github/Sage/grape_documenter.png)](https://codeclimate.com/github/Sage/grape_documenter)
+
+[![Build Status](https://travis-ci.org/Sage/grape_documenter.svg?branch=master)](https://travis-ci.org/Sage/grape_documenter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f44a0ac3bf88a4bd2b8b/maintainability)](https://codeclimate.com/github/Sage/grape_documenter/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f44a0ac3bf88a4bd2b8b/test_coverage)](https://codeclimate.com/github/Sage/grape_documenter/test_coverage)
+[![Gem Version](https://badge.fury.io/rb/grape_documenter.svg)](https://badge.fury.io/rb/grape_documenter)
 
 This adds a task to Rails Applications to generate documentation for [Grape](https://github.com/intridea/grape) APIs.
 
@@ -39,3 +41,10 @@ Currently 2 formats are supported: 'html'; 'textile'. The default is html. You c
 4. Verify that all tests pass (`bundle exec fudge build`)
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create new Pull Request
+
+## License
+
+This gem is available as open source under the terms of the
+[MIT licence](LICENSE).
+
+Copyright (c) 2012-2018 Sage Group Plc. All rights reserved.
