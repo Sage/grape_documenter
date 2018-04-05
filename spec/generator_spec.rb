@@ -6,15 +6,15 @@ describe GrapeDocumenter::Generator do
   context 'integration test' do
     context 'for the first api version' do
       it 'stores the version' do
-        subject.generate_namespace_docs.first.version.should == 'v1'
+        expect(subject.generate_namespace_docs.first.version).to eq('v1')
       end
 
       it 'stores the title' do
-        subject.generate_namespace_docs.first.title.should == 'User'
+        expect(subject.generate_namespace_docs.first.title).to eq('User')
       end
 
       it 'stores the root_path' do
-        subject.generate_namespace_docs.first.root_path.should == '/user'
+        expect(subject.generate_namespace_docs.first.root_path).to eq('/user')
       end
 
       describe 'routes' do
@@ -23,32 +23,32 @@ describe GrapeDocumenter::Generator do
         describe 'index' do
           describe 'method' do
             it 'returns get' do
-              routes.first.http_method.should == 'GET'
+              expect(routes.first.http_method).to eq('GET')
             end
           end
 
           describe 'description' do
             it 'returns Get all users' do
-              routes.first.description.should == 'Get all users'
+              expect(routes.first.description).to eq('Get all users')
             end
           end
 
           describe 'path' do
             it 'returns /users' do
-              routes.first.path.should == '/:version/user'
+              expect(routes.first.path).to eq('/:version/user')
             end
           end
 
           describe 'path' do
             it 'returns /users' do
-              routes.first.path.should == '/:version/user'
+              expect(routes.first.path).to eq('/:version/user')
             end
           end
 
           describe 'action_params' do
             it 'returns /users' do
               allow(subject).to receive(:endpoint_action).and_return 'custom_action'
-              routes.first.action_params.should == 'custom_action'
+              expect(routes.first.action_params).to eq('custom_action')
             end
           end
         end
@@ -56,7 +56,7 @@ describe GrapeDocumenter::Generator do
         describe 'show' do
           describe 'params' do
             it 'returns id with desc and type' do
-              routes[1].params.should == { 'id' => { :desc => 'The id of the user', :type => 'integer' } }
+              expect(routes[1].params).to eq({ 'id' => { :desc => 'The id of the user', :type => 'integer' } })
             end
           end
         end
@@ -64,14 +64,14 @@ describe GrapeDocumenter::Generator do
         describe 'post' do
           describe 'optional params' do
             it 'returns first_name with desc and type' do
-              routes[2].optional_params.should == { 'first_name' => { :desc => 'First name of the user', :type => 'string' } }
+              expect(routes[2].optional_params).to eq({ 'first_name' => { :desc => 'First name of the user', :type => 'string' } })
             end
           end
         end
       end
 
       it 'stores the global resources' do
-        subject.generate_namespace_docs.first.resources.should == [{ :name => 'User', :path => '/user' }]
+        expect(subject.generate_namespace_docs.first.resources).to eq([{ :name => 'User', :path => '/user' }])
       end
     end
   end
@@ -81,7 +81,7 @@ describe GrapeDocumenter::Generator do
       subject { described_class.new 'MyApplication::API', '/tmp/grape_documenter', :mounted_path => '/mounted_path' }
 
       it 'sets the prefix' do
-        subject.mounted_path.should == '/mounted_path'
+        expect(subject.mounted_path).to eq('/mounted_path')
       end
     end
   end
