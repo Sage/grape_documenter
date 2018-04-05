@@ -2,3 +2,13 @@ language: ruby
 rvm:
   - 2.2.8
   - 2.3.5
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - "./cc-test-reporter before-build"
+after_script:
+  - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+env:
+  global:
+    secure: dulzwQ1JSqA9tAJxZShhPTwmotrjJMepzSmCg5QLCKkyLpvhFZKmdHriRmqqxP8KEKqkNMHCwAwkvU49FSx2QBpjqy0QNYyXg+oja9mkb9kfTFtRqvZKLfPh0XS27w8MckMArTVfucAYKo3p1KhEbGj6uTmu0k/+TTQotZadbaI=
