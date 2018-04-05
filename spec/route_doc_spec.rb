@@ -42,7 +42,7 @@ describe GrapeDocumenter::RouteDoc do
     end
   end
 
-  describe :inferred_title do
+  describe 'inferred_title' do
     context 'when it is an index action' do
       let(:mock_route) do
         double('route', :route_method => 'GET',
@@ -178,7 +178,7 @@ describe GrapeDocumenter::RouteDoc do
     end
   end
 
-  describe :inferred_rails_action do
+  describe 'inferred_rails_action' do
     context 'when index' do
       before :each do
         allow(mock_route).to receive(:route_method).and_return('GET')
