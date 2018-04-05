@@ -4,7 +4,7 @@ rvm:
   - 2.3.5
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-    > ./cc-test-reporter
+      > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - "./cc-test-reporter before-build"
 after_script:
@@ -12,3 +12,12 @@ after_script:
 env:
   global:
     secure: dulzwQ1JSqA9tAJxZShhPTwmotrjJMepzSmCg5QLCKkyLpvhFZKmdHriRmqqxP8KEKqkNMHCwAwkvU49FSx2QBpjqy0QNYyXg+oja9mkb9kfTFtRqvZKLfPh0XS27w8MckMArTVfucAYKo3p1KhEbGj6uTmu0k/+TTQotZadbaI=
+deploy:
+  provider: rubygems
+  api_key:
+    secure: Aln6wmgc039xHWO2Rco97C39Ha1tz4Pv1aEl9iXldhaXcxmW7vB+6PEjZRC594T9CjH+dEP2RMXfyEJk+HflGp+SkcDJRPv/FMI5kBsRCqxQWJofRLrT9CLiX+PRkNGmH26kAOVaEMne5KAKy1OBUbJ1tzJL/XrsDaXNsJMLk6I=
+  gem: grape_documenter
+  on:
+    tags: true
+    repo: Sage/grape_documenter
+    condition: "$TRAVIS_RUBY_VERSION == 2.3.5"
