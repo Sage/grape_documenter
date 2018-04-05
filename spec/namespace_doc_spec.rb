@@ -11,23 +11,23 @@ describe GrapeDocumenter::NamespaceDoc do
     end
 
     it 'stores title' do
-      subject.title.should == 'some title'
+      expect(subject.title).to eq('some title')
     end
 
     it 'stores routes' do
-      subject.routes.should == 'some routes'
+      expect(subject.routes).to eq('some routes')
     end
 
     it 'stores root_path' do
-      subject.root_path.should == 'some root path'
+      expect(subject.root_path).to eq('some root path')
     end
 
     it 'stores version' do
-      subject.version.should == 'some version'
+      expect(subject.version).to eq('some version')
     end
 
     it 'stores resources' do
-      subject.resources.should == 'some resources'
+      expect(subject.resources).to eq('some resources')
     end
   end
 end
